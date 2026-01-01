@@ -1,13 +1,42 @@
-python-dotenv
+# -------------------------
+# CORE
+# -------------------------
 fastapi
 uvicorn
+python-dotenv
+
+# -------------------------
+# DATABASE
+# -------------------------
 sqlalchemy
 psycopg2-binary
+
+# -------------------------
+# AUTH / SECURITY
+# -------------------------
 python-jose
-passlib
+passlib[bcrypt]
+email-validator   # 🔥 REQUIRED for Pydantic EmailStr
+
+# -------------------------
+# FILE UPLOADS
+# -------------------------
 python-multipart
+
+# -------------------------
+# TEXT EXTRACTION
+# -------------------------
 PyPDF2
 python-docx
 Pillow
 pytesseract
+
+# -------------------------
+# AI
+# -------------------------
 groq
+
+# -------------------------
+# Pydantic
+# -------------------------
+pydantic
