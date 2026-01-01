@@ -1,8 +1,16 @@
 import os
 from PyPDF2 import PdfReader
-from PIL import Image
-import pytesseract
 import docx
+
+# -------------------------
+# OPTIONAL OCR (SAFE)
+# -------------------------
+try:
+    import pytesseract
+except Exception:
+    pytesseract = None
+
+from PIL import Image
 
 
 def extract_text(file_path: str) -> str:
@@ -22,16 +30,23 @@ def extract_text(file_path: str) -> str:
     if ext == ".pdf":
         reader = PdfReader(file_path)
         for page in reader.pages:
-            if page.extract_text():
-                text += page.extract_text() + "\n"
+            page_text = page.extract_text()
+            if page_text:
+                text += page_text + "\n"
         return text.strip()
 
     # -------------------------
-    # IMAGE (OCR)
+    # IMAGE (OCR – OPTIONAL)
     # -------------------------
     if ext in [".png", ".jpg", ".jpeg", ".webp"]:
-        img = Image.open(file_path)
-        return pytesseract.image_to_string(img, lang="eng+hin").strip()
+        if pytesseract is None:
+            # 🔥 Render-safe: OCR disabled but app continues
+            return ""
+        try:
+            img = Image.open(file_path)
+            return pytesseract.image_to_string(img, lang="eng+hin").strip()
+        except Exception:
+            return ""
 
     # -------------------------
     # DOCX
