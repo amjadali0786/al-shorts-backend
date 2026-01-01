@@ -4,8 +4,9 @@ sqlalchemy
 psycopg2-binary
 python-jose
 passlib
-bcrypt
 python-multipart
+
 python-dotenv
 groq
 PyPDF2
+Pillow
