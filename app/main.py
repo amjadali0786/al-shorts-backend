@@ -24,8 +24,8 @@ app = FastAPI(title="AI Shorts Backend")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
+        "http://localhost:5173",   # local dev
+        "https://al-shorts-frontend-itqu8lv9u-amjad-alis-projects-82e9b039.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
